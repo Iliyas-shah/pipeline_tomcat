@@ -1,6 +1,6 @@
 node{
 
-   def tomcatWeb = 'D:\\Auto_deployment\\apache-tomcat-9.0.30\\apache-tomcat-9.0.30\\webapps'
+   def tomcatWeb = 'C:\\Users\\iliyas\\Downloads\\apache-tomcat-10.1.13-windows-x64\\apache-tomcat-10.1.13\\webapps'
    def tomcatBin = 'C:\\Users\\iliyas\\Downloads\\apache-tomcat-10.1.13-windows-x64\\apache-tomcat-10.1.13\\bin'
    
    // 'D:\\Auto_deployment\\apache-tomcat-9.0.30\\apache-tomcat-9.0.30\\bin'
@@ -25,9 +25,9 @@ node{
                )
 '''
    }*/
-   // stage('Deploy to Tomcat'){
-   //   bat "copy target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\""
-   // }
+   stage('Deploy to Tomcat'){
+     bat "copy target\\pipeline_tomcat.war \"${tomcatWeb}\\pipeline_tomcat.war\""
+   }
       stage ('Start Tomcat Server') {
          sleep(time:5,unit:"SECONDS") 
          bat "${tomcatBin}\\startup.bat"
