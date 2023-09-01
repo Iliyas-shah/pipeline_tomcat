@@ -5,10 +5,10 @@ node{
    
    // 'D:\\Auto_deployment\\apache-tomcat-9.0.30\\apache-tomcat-9.0.30\\bin'
    def tomcatStatus = ''
-   stage('SCM Checkout'){
+   stage('Test'){
      git 'https://github.com/Iliyas-shah/pipeline_tomcat.git'
    }
-   stage('Compile-Package-create-war-file'){
+   stage('build'){
       // Get maven home path
       def mvnHome =  tool name: 'maven-3', type: 'maven'   
       bat "${mvnHome}/bin/mvn package"
@@ -28,7 +28,7 @@ node{
    // stage('Deploy to Tomcat'){
    //   bat "copy target\\pipeline_tomcat.war \"${tomcatWeb}\\pipeline_tomcat.war\""
    // }
-      stage ('Start Tomcat Server') {
+      stage ('Deploy') {
          sleep(time:5,unit:"SECONDS") 
          bat "${tomcatBin}\\startup.bat"
          sleep(time:100,unit:"SECONDS")
